@@ -1,4 +1,4 @@
-class SendgridJsonFix
+class UnfortunateSendgridFix
   def initialize(app)
     @app = app
   end
