@@ -55,5 +55,6 @@ end
 
 ## More Information
 
+* [Gridhook API Documentation](http://injekt.github.com/rdoc/gridhook/)
 * [SendGrid Webhooks](http://sendgrid.com/docs/API_Reference/Webhooks/index.html)
 * [SendGrid Webhooks/Event](http://sendgrid.com/docs/API_Reference/Webhooks/event.html)
