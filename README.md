@@ -11,17 +11,14 @@ Add Gridhook to your application's Gemfile and run `bundle install`:
 gem 'gridhook'
 ```
 
-Add a route for the default event handling endpoint that Gridhook provides:
-
-```ruby
-post '/email_event' => 'gridhook/events#create'
-```
-
 You must also tell Gridhook how to process your event. Simply add an
 initializer in `config/initializers/gridhook.rb`:
 
 ```ruby
 Gridhook.configure do |config|
+  # The path we want to receive events
+  config.event_receive_path = '/sendgrid/event'
+
   config.event_processor = proc do |event|
     # event is a Gridhook::Event object
     EmailEvent.create! event.attributes

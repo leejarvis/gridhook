@@ -8,7 +8,11 @@ module Gridhook
     yield config
   end
 
-  class Config < Struct.new(:event_processor)
+  class Config < Struct.new(:event_processor, :event_receive_path)
+    def initialize(*)
+      @event_receive_path = '/sendgrid/event'
+      super
+    end
   end
 
 end
