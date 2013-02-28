@@ -45,6 +45,11 @@ Gridhook.configure do |config|
 end
 ```
 
+## TODO
+
+* More tests
+* Integrate [parse webhook](http://sendgrid.com/docs/API_Reference/Webhooks/parse.html)
+
 ## More Information
 
 * [SendGrid Webhooks](http://sendgrid.com/docs/API_Reference/Webhooks/index.html)
