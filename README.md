@@ -3,6 +3,8 @@
 A Rails engine providing an endpoint for handling incoming SendGrid
 webhook events.
 
+This engine supports both batched and non-batched events from SendGrid.
+
 ## Installation
 
 Add Gridhook to your application's Gemfile and run `bundle install`:
