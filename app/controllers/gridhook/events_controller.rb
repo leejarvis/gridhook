@@ -1,5 +1,5 @@
 module Gridhook
-  class EmailsController < ActionController::Base
+  class EventsController < ActionController::Base
     def create
       Gridlock::Event.process(params)
       head :ok

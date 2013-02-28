@@ -14,7 +14,7 @@ gem 'gridhook'
 Add a route for the default event handling endpoint that Gridhook provides:
 
 ```ruby
-post '/email_event' => 'gridhook/events'
+post '/email_event' => 'gridhook/events#create'
 ```
 
 You must also tell Gridhook how to process your event. Simply add an
