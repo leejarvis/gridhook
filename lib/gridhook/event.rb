@@ -1,6 +1,12 @@
 module Gridhook
   class Event
 
+    # Process a String or stream of JSON and execute our
+    # event processor.
+    #
+    # body - A String or stream for Yajl to parse
+    #
+    # Returns nothing.
     def self.process(body)
       parser = Yajl::Parser.new
       parser.on_parse_complete = proc do |event|
@@ -13,20 +19,32 @@ module Gridhook
       parser.parse(body)
     end
 
+    # The original Hash of attributes received from SendGrid.
     attr_reader :attributes
 
     def initialize(attributes)
       @attributes = attributes.with_indifferent_access
     end
 
+    # An alias for returning the type of this event, ie:
+    # sent, delivered, bounced, etc
     def name
       attributes[:event]
     end
 
+    # Returns a new Time object from the event timestamp.
     def timestamp
       Time.at (attributes[:timestamp] || Time.now).to_i
     end
 
+    # A helper for accessing the original values sent from
+    # SendGrid, ie
+    #
+    # Example:
+    #
+    #   event = Event.new(event: 'sent', email: 'lee@example.com')
+    #   event[:event]  #=> 'sent'
+    #   event['email'] #=> 'lee@example.com' # indifferent access
     def [](key)
       attributes[key]
     end

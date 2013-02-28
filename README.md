@@ -1,9 +1,13 @@
 # Gridhook
 
-A Rails engine providing an endpoint for handling incoming SendGrid
-webhook events.
+Gridhook is a Rails engine providing an endpoint for handling incoming
+SendGrid webhook events.
 
 This engine supports both batched and non-batched events from SendGrid.
+
+Looking to handle incoming email from the SendGrid Parse API? Gridhook
+will eventually support that, until then, you should check out
+[Griddler](https://github.com/thoughtbot/griddler). It's awesome.
 
 ## Installation
 
