@@ -27,6 +27,10 @@ module Gridhook
       Time.at (attributes[:timestamp] || Time.now).to_i
     end
 
+    def [](key)
+      attributes[key]
+    end
+
     class << self
       private
 
