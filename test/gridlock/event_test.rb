@@ -37,10 +37,18 @@ class EventTest < TestCase
     assert_equal 2, @events.size
   end
 
+  test 'ensure we fallback to request parameters if invalid JSON found in body' do
+    process('email=test@gmail.com&arg2=2&arg1=1&category=testing&event=processed',
+      { :email => 'test@gmail.com', :arg2 => '2', :arg1 => '1', :category => 'testing',
+        :event => 'processed', :controller => 'sendgrid', :action => 'receive'})
+    assert_equal 1, @events.size
+    assert_equal 'processed', @events.first.event
+  end
+
   private
 
-  def process(str)
-    Gridhook::Event.process(str)
+  def process(str, params = {})
+    Gridhook::Event.process(str, params)
   end
 
 end

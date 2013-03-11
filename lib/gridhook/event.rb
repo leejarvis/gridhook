@@ -1,3 +1,5 @@
+require 'active_support/core_ext/hash/except'
+
 module Gridhook
   class Event
 
@@ -7,7 +9,7 @@ module Gridhook
     # body - A String or stream for Yajl to parse
     #
     # Returns nothing.
-    def self.process(body)
+    def self.process(body, params = {})
       parser = Yajl::Parser.new
       parser.on_parse_complete = proc do |event|
         if event.is_a?(Array)
@@ -16,7 +18,11 @@ module Gridhook
           process_event event
         end
       end
-      parser.parse(body)
+      begin
+        parser.parse(body)
+      rescue Yajl::ParseError
+        process_event params.except(:controller, :action)
+      end
     end
 
     # The original Hash of attributes received from SendGrid.
@@ -31,10 +37,11 @@ module Gridhook
     def name
       attributes[:event]
     end
+    alias event name
 
     # Returns a new Time object from the event timestamp.
     def timestamp
-      Time.at (attributes[:timestamp] || Time.now).to_i
+      Time.at((attributes[:timestamp] || Time.now).to_i)
     end
 
     # A helper for accessing the original values sent from
