@@ -6,21 +6,18 @@ module Gridhook
     # Process a String or stream of JSON and execute our
     # event processor.
     #
-    # body - A String or stream for Yajl to parse
+    # body - A String or stream for MultiJson to parse
     #
     # Returns nothing.
     def self.process(body, params = {})
-      parser = Yajl::Parser.new
-      parser.on_parse_complete = proc do |event|
+      begin
+        event = MultiJson.load(body)
         if event.is_a?(Array)
           process_events event
         else
           process_event event
         end
-      end
-      begin
-        parser.parse(body)
-      rescue Yajl::ParseError
+      rescue MultiJson::LoadError
         process_event params.except(:controller, :action)
       end
     end
