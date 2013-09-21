@@ -49,6 +49,8 @@ end
 ```
 
 ## Changelog
+v0.2.1 Use built-in rails JSON parser.
+
 v0.2.0 Supports version 3 of the Sendgrid webhook released on 
 September 6th, 2013, which provides the proper headers and JSON post body
 without hacks or middleware. If upgrading to this version, please make sure

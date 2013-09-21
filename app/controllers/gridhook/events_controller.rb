@@ -1,7 +1,7 @@
 module Gridhook
   class EventsController < ActionController::Base
     def create
-      Gridhook::Event.process(request.body, params)
+      Gridhook::Event.process(params)
       head :ok
     end
   end

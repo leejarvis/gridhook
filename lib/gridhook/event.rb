@@ -9,15 +9,10 @@ module Gridhook
     # body - A String or stream for MultiJson to parse
     #
     # Returns nothing.
-    def self.process(body, params = {})
-      begin
-        event = MultiJson.load(body)
-        if event.is_a?(Array)
-          process_events event
-        else
-          process_event event
-        end
-      rescue MultiJson::LoadError
+    def self.process(params = {})
+      if params.has_key? "_json"
+        process_events params["_json"]
+      else
         process_event params.except(:controller, :action)
       end
     end
