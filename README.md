@@ -49,6 +49,8 @@ end
 ```
 
 ## Changelog
+v0.2.3 Removed 'multi_json' dependency
+
 v0.2.2 Require decorators as dependency
 
 v0.2.1 Use built-in rails JSON parser.

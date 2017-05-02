@@ -1,5 +1,4 @@
 require 'rails/engine'
-require 'multi_json'
 require 'action_view'
 require 'action_dispatch'
 
