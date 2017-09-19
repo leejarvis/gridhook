@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/leejarvis/gridhook.svg?branch=master)](https://travis-ci.org/leejarvis/gridhook)
+
 # Gridhook
 
 Gridhook is a Rails engine providing an endpoint for handling incoming
