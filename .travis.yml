@@ -1,0 +1,14 @@
+cache: bundler
+before_install:
+  - gem install bundler
+rvm:
+  - 2.0.0
+  - 2.1
+  - 2.2
+  - 2.3.4
+  - 2.4.1
+  - jruby-9.1.12.0
+  - jruby-head
+  - ruby-head
+notifications:
+  email: false
