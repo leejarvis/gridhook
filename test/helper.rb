@@ -2,11 +2,7 @@ ENV['RAILS_ENV'] ||= 'test'
 # require File.expand_path '../dummy/config/environment', __FILE__
 
 require 'minitest/autorun'
-
-unless Object.const_defined? 'Gridhook'
-  $:.unshift File.expand_path('../../lib', __FILE__)
-  require 'gridhook'
-end
+require_relative '../../lib/gridhook'
 
 class TestCase < MiniTest::Unit::TestCase
   def self.test(name, &block)
