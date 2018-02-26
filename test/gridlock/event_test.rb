@@ -11,6 +11,10 @@ class EventTest < TestCase
     end
   end
 
+  def teardown
+    Gridhook.config.event_processor = nil
+  end
+
   test 'parsing a single incoming JSON object' do
     process({ email: 'foo@bar.  com', timestamp: Time.now.to_i, event: 'delivered' })
     assert_equal 1, @events.size
